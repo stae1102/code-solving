@@ -18,3 +18,18 @@ while pf != n - 2: # 처음 커서가 두 번째 커서를 넘지 않는 경우
         ps = pf + 1 # 두 번째 커서 위치 초기화
         pt = ps + 1 # 세 번째 커서 위치 초기화
 print(highest)
+
+########### 새롭게 배운 인사이트 #############
+
+def P(n,m,c):
+	t=set()
+	for i in range(n-2): # for 반복문을 통해서 정해진 위치를 미리 지정해주면 더욱 편하고, 복잡도도 줄어듦
+		for o in range(i+1,n-1):
+			for p in range(o+1,n):
+				s=c[i]+c[o]+c[p]
+				if s<=m:
+					t.add(s)
+					break
+
+	return max([*t])
+print(P(*map(int,input().split()),list(sorted(map(int,input().split()))[::-1])))
