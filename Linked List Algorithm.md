@@ -120,3 +120,137 @@ head.next.next is None    # 연결 리스트의 노드가 2개인지 확인
 
 ` 지금까지 살펴본 3가지 경우의 판단은 no == 0, no == 1, no == 2를 사용할 수 있다.
 
+* 꼬리 노드의 판단
+> Node형인 변수 p가 리스트에 있는 노드를 참조한다면, 이때 p가 참조하는 노드가 연결 리스트의 꼬리 노드인지는 다음 식으로 수행할 수 있습니다.
+
+```python
+p.next is None    # p가 참조하는 노드가 꼬리 노드인지 확인
+```
+### 검색을 수행하는 search() 함수
+<br></br>
+▶인수로 주어진 데이터 data와 값이 같은 노드를 검색하는 함수
+> * 검색 알고리즘은 선형 검색을 사용   
+> * 목적 노드를 만날 때까지 머리 노드부터 순서대로 스캔
+
+![노드 서치](https://user-images.githubusercontent.com/83271772/135406506-3c0ccd9e-217c-487e-b406-6f537b22fb6f.png)
+
+**노드를 스캔할 때 다음 조건 가운데 하나만 성립해도 검색 종료**
+> 1. 검색 조건을 만족하는 노드를 발견하지 못하고 꼬리 노드까지 왔을 경우   
+> 2. 검색 조건을 만족하는 노드를 발견한 경우
+
+<br></br>
+
+```python
+    def search(self, data: Any) -> int:
+        """data와 값이 같은 노드를 검색"""
+        cnt = 0
+        ptr = self.head
+        while ptr is not None:
+            if ptr.data == data:
+                self.current = ptr
+                return cnt
+            cnt += 1
+            ptr = ptr.next
+        return -1
+    
+    def __contains__(self, data: Any) -> bool:
+        """연결 리스트에 data가 포함되어 있는지 확인"""
+        return self.search(data) >= 0
+```
+
+<br></br>
+
+> * 스캔 중인 노드를 참조하기 위한 변수 ptr을 head로 초기화   
+> * ptr이 참조하는 곳은 head가 참조하는 머리 노드A   
+> * 카운터용 변수 cnt를 0으로 초기화
+
+<br></br>
+
+> * ptr 값이 None이 아니면 루프를 실행   
+> * ptr 값이 None이면 스캔한 노드가 존재하지 않으므로 while문을 종료하고 return -1
+
+<br></br>
+
+> * 앞에서 정리한 종료 조건 2의 판단을 수행하며, 검색할 data와 스캔 중인 노드의 데이터 ptr.data와 값이 같은지 판단합니다.   
+> * 주목 포인터 current에 ptr을 대입하고 찾은 노드의 위치를 나타내는 카운터 cnt를 반환
+
+### 데이터가 포함되어 있는지 판단하는 \_\_contains\_\_() 함수
+리스트에 data와 값이 같은 노드가 포함되어 있는지 판단하는 함수입니다. 포함되어 있으면 True를 반환하고, 그렇지 않으면 False를 반환합니다
+
+### 머리에 노드를 삽입하는 add_first() 함수
+
+
+```python
+def add_first(self, data: Any) -> None:
+    """맨 앞에 노드를 삽입"""
+    ptr = self.head # 삽입하기 전의 머리 노드
+    self.head = self.current = Node(data, ptr)
+    self.no += 1
+```
+
+> * 삽입하기 전의 머리 노드 A를 참조하는 포인터를 ptr에 저장해둡니다.
+> * 삽입할 노드 G를 Node(data, ptr)로 생성합니다. 노드 G의 데이터는 data가 되고, 뒤쪽 포인터가 참조하는 곳은 ptr(삽입하기 전의 머리 노드 A)이 됩니다.   
+> * 이때 수행하는 대입으로 head는 삽입한 노드를 참조하도록 업데이트됩니다.
+
+` 주목 포인터 current도 삽입한 노드를 참조하도록 업데이트됩니다(꼬리에 노드를 삽입하는 add_last() 함수에서도 마찬가지입니다).`
+
+### 꼬리에 노드를 삽입하는 add_last() 함수
+▶ 리스트의 맨 끝에 노드를 삽입하는 함수입니다. 리스트가 비어 있는지(head is None이 성립하는지) 확인하고 그에 따라 다르게 처리
+
+> 1. **리스트가 비어 있을 때**   
+> 맨 앞에 노드를 삽입하는 것과 같은 처리를 수행하므로 add_first() 함수를 호출합니다.
+> 2. **리스트가 비어있지 않을 때**
+> 리스트의 맨 끝에 노드 G를 삽입합니다.
+
+```python
+def add_last(self, data: Any):
+    """맨 끝에 노드를 삽입"""
+    if self.head is None:    # 리스트가 비어 있으면
+        self.add_first(data) # 맨 앞에 노드를 삽입
+    else:
+        ptr = self.head
+        while ptr.next is not None:
+            ptr = ptr.next
+        ptr.next = self.current = Node(data, None)
+        self.no += 1
+```
+> * 꼬리 노드를 찾는 과정을 수행
+> * ptr이 참조하는 곳을 그 뒤쪽 포인터로 업데이트 하는 과정을 반복함으로써 노드를 만 앞부터 순서대로 스캔
+> * while 문의 반복이 종료되는 것은 ptr.next가 참조하는 곳이 None으로 되었을 때.
+`while 문을 종료할 때 ptr은 꼬리 노드를 참조` 
+```python
+while ptr.next is not None:
+    ptr = ptr.next
+ptr.next = self.current = Node(data, None)
+self.no += 1
+````
+
+> * 삽입하는 노드 G를 Node(data, None)으로 생성합니다.
+> * 뒤쪽 포인터를 None으로 하는 것은 맨 끝에 위치한 노드 G가 어떤 노드도 참조하지 않도록 하기 위한 것입니다.
+> * 노드 F의 뒤쪽 포인터 ptr.next가 참조하는 곳이 새로 삽입한 노드 G가 되도록 업데이트 합니다.
+
+```python
+ptr.next = self.current = Node(data, None)
+```
+
+### 머리 노드를 삭제하는 remove_first() 함수
+▶ 머리 노드를 삭제하는 함수. 삭제 처리를 수행하는 것은 리스트가 비어 있지 않을 (head is not None이 성립할) 때입니다.
+
+```python
+def remove_first(self) -> None:
+    """머리 노드를 삭제"""
+    if self.head is not None:    # 리스트가 비어 있지 않으면
+        self.head = self.current = self.head.next
+    self.no -= 1
+```
+
+`리스트에 노드가 하나밖에 없는 경우: 삭제하기 전의 머리 노드는 꼬리 노드이기도 하므로 뒤쪽 포인터 head.next의 값은 None입니다.
+이 None을 대입하면 리스트는 빈 상태가 됩니다.`
+
+### 꼬리 노드를 삭제하는 remove_last() 함수
+▶ 꼬리 노드를 삭제하는 함수. 삭제 처리를 수행하는 것은 리스트가 비어 있지 않을 때입니다. 리스트에 존재하는 노드가 하나뿐인지 확인하고 그에 따라 다음과 같이 다르게 처리합니다.
+
+> * 리스트에 노드가 하나만 존재할 때
+> 머리 노드를 삭제하는 것이므로 remove_first() 함수를 호출합니다.
+> * 리스트에 노드가 2개 이상 존재할 때
+> 리스트의 맨 끝에서 노드를 삭제합니다.
