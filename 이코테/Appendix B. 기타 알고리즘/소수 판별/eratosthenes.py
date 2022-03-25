@@ -1,6 +1,6 @@
 import math
 
-n = 1000
+n = 100000000
 array = [True for _ in range(n + 1)]
 
 for i in range(2, int(math.sqrt(n) + 1)):
