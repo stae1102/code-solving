@@ -1,5 +1,4 @@
-from itertools import combinations
+import bisect
+a = [1, 3, 5, 7, 9]
 
-a = [[11, 22, 33], [44, 55, 66]]
-
-print(min(map(sum, combinations(a, 2))))
+print(bisect.bisect_left(a, 2))
