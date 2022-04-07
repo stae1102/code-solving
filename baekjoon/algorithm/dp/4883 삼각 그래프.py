@@ -21,7 +21,6 @@ while True:
     n = int(input())
     if n == 0:
         break
-
     graph = [list(map(int, input().split())) for _ in range(n)]
     ans = solve(graph)
     print(f'{i}. {ans}')
