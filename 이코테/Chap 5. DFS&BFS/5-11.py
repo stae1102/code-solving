@@ -1,7 +1,6 @@
 from collections import deque
 import sys
 
-from idna import check_initial_combiner
 input = sys.stdin.readline
 n, m = map(int, input().split())
 

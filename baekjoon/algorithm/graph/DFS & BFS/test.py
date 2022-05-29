@@ -1,5 +1,5 @@
-from collections import deque
+l = []
 
-q = deque()
+l.append(list(map(int, input().split())))
 
-print(q.empty())
+print(l)
