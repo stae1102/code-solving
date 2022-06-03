@@ -6,7 +6,7 @@ https://github.com/tony9402/baekjoon 의 정리법을 참고하여 작성
 | ---- | --------------- | ------------------------- | ------ | ------------------------------------------------------ |
 | 00   | 스택            | Stack                     |        |                                                        |
 | 01   | 큐              | Queue                     |        |                                                        |
-| 02   | 트리            | Tree                      |        |                                                        |
+| 02   | 트리            | Tree                      |        | [바로가기](./Workbook/Tree/README.md)                  |
 | 03   | 맵              | Map                       |        |                                                        |
 | 04   | 힙, 우선순위 큐 | Heap, Priority Queue      |        |                                                        |
 | 05   | 탐욕법          | Greedy                    |        | [바로가기](./Workbook/Greedy/README.md)                |
