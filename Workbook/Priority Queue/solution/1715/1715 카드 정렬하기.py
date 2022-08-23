@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import heapq
 import sys
 input = sys.stdin.readline
@@ -14,4 +15,22 @@ while len(q) != 1:
     heapq.heappush(q, a + b)
     temp += a + b
 
+=======
+import heapq
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+q = list(int(input()) for _ in range(n))
+temp = 0
+
+heapq.heapify(q)
+
+while len(q) != 1:
+    a = heapq.heappop(q)
+    b = heapq.heappop(q)
+    heapq.heappush(q, a + b)
+    temp += a + b
+
+>>>>>>> origin/ubuntu
 print(temp)
