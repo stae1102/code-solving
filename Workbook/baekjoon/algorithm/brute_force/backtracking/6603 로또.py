@@ -1,6 +1,7 @@
 import sys
 input = sys.stdin.readline
 
+
 def lotto(arr, idx, lot):
     if len(lot) == 6:
         print(*lot)
@@ -9,6 +10,7 @@ def lotto(arr, idx, lot):
         return
     lotto(arr, idx+1, lot+[arr[idx]])
     lotto(arr, idx+1, lot)
+
 
 while True:
     n, *data = list(map(int, input().split()))
