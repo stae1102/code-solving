@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def gcd(a, b):
     tmp = a % b
     while tmp != 0:
@@ -8,4 +9,16 @@ def gcd(a, b):
     return b
 
 n, m = map(int, input().split())
+=======
+def gcd(a, b):
+    tmp = a % b
+    while tmp != 0:
+        a = b
+        b = tmp
+        tmp = a % b
+
+    return b
+
+n, m = map(int, input().split())
+>>>>>>> origin/ubuntu
 print(gcd(n, m))
