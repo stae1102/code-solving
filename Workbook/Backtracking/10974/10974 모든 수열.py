@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 n = int(input())
 num = [i for i in range(1, n + 1)]
 
 visited = [False] * n
 arr = []
+
 
 def solve(cnt):
     if cnt == n:
@@ -18,12 +18,13 @@ def solve(cnt):
             visited[i] = False
             arr.pop()
 
-=======
+
 n = int(input())
 num = [i for i in range(1, n + 1)]
 
 visited = [False] * n
 arr = []
+
 
 def solve(cnt):
     if cnt == n:
@@ -38,5 +39,5 @@ def solve(cnt):
             visited[i] = False
             arr.pop()
 
->>>>>>> origin/ubuntu
+
 solve(0)
