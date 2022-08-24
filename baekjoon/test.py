@@ -1,3 +1,4 @@
-l = [[i + j for i in range(1, 10)] for j in range(0, 91, 9)]
-# print(l)
-print(l[:][2])
+from math import gcd
+
+l = [1, 2, 3, 4, 5]
+print(gcd(*l))
