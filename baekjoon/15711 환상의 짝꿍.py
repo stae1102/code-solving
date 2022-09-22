@@ -13,7 +13,10 @@ for i in range(3, m + 1, 2):
         for j in range(2 * i, m + 1, i):
             sieve[j] = False
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8dc1ef8861f97e403a478f8bb0d2b1d34c51b8f2
 def is_prime(num):
     if num > m:
         for prime in primes:
