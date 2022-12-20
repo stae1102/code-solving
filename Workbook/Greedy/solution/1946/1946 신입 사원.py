@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 import sys
 r = sys.stdin.readline
 
 t = int(r())
+
 
 def solve(n):
     s = [0] * (n + 1)
@@ -18,27 +18,6 @@ def solve(n):
             MIN = min(MIN, s[i])
     return n
 
-for _ in range(t):
-=======
-import sys
-r = sys.stdin.readline
-
-t = int(r())
-
-def solve(n):
-    s = [0] * (n + 1)
-    for _ in range(n):
-        x, y = map(int, r().split())
-        s[x] = y
-
-    MIN = n
-    for i in range(1, n + 1):
-        if MIN < s[i]:
-            n -= 1
-        else:
-            MIN = min(MIN, s[i])
-    return n
 
 for _ in range(t):
->>>>>>> origin/ubuntu
     print(solve(int(r())))

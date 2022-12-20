@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 n = int(input())
+
 
 def hanoi(n, start, to, end):
     if n == 1:
@@ -9,18 +9,6 @@ def hanoi(n, start, to, end):
         print(start, end)
         hanoi(n - 1, to, start, end)
 
-print(2 ** n - 1)
-=======
-n = int(input())
-
-def hanoi(n, start, to, end):
-    if n == 1:
-        print(start, end)
-    else:
-        hanoi(n - 1, start, end, to)
-        print(start, end)
-        hanoi(n - 1, to, start, end)
 
 print(2 ** n - 1)
->>>>>>> origin/ubuntu
 hanoi(n, 1, 2, 3)
