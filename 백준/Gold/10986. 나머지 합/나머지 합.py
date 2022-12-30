@@ -6,12 +6,8 @@ ans = 0
 
 prefix_sum = [0] + arr
 for i in range(1, n + 1):
-  prefix_sum[i] += prefix_sum[i - 1]
-  prefix_sum[i] %= m
-  if prefix_sum[i] in rest_count:
-    ans += rest_count[prefix_sum[i]]
-    rest_count[prefix_sum[i]] += 1
-  else:
-    rest_count[prefix_sum[i]] = 1
+  prefix_sum[i] = r = (prefix_sum[i] + prefix_sum[i - 1]) % m
+  ans += rest_count.get(r, 0)
+  rest_count[r] = rest_count.get(r, 0) + 1
 
 print(ans)
