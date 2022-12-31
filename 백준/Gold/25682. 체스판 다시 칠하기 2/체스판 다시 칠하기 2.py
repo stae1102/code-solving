@@ -8,19 +8,13 @@ ans = 987654321
 
 for x in range(1, n + 1):
   for y in range(1, m + 1):
-    prefix_sum[0][x][y] += prefix_sum[0][x][y - 1]
-    prefix_sum[1][x][y] += prefix_sum[1][x][y - 1]
+    prefix_sum[0][x][y] += prefix_sum[0][x][y - 1] + prefix_sum[0][x - 1][y] - prefix_sum[0][x - 1][y - 1]
+    prefix_sum[1][x][y] += prefix_sum[1][x][y - 1] + prefix_sum[1][x - 1][y] - prefix_sum[1][x - 1][y - 1]
 
-    # 좌상단이 검은 색
     if board[x - 1][y - 1] == color[(x + y) % 2]:
-      # x + y %
       prefix_sum[0][x][y] += 1
     else:
       prefix_sum[1][x][y] += 1
-  
-  for y in range(1, m + 1):
-    prefix_sum[0][x][y] += prefix_sum[0][x - 1][y]
-    prefix_sum[1][x][y] += prefix_sum[1][x - 1][y]
 
 for x in range(n - k + 1):
   for y in range(m - k + 1):
